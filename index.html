@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch api</title>
+    
+<body>
+
+    <h1>world country</h1>
+    <div class="container">
+
+    <div class="box">
+        <input type="text" name="name" id="country-input">
+        <button onclick="btnButton()">serach</button>
+        
+    </div>
+
+    <div class="box-1">
+        <img src="" alt="" id="img-tag" srcset="">
+        <h2>Name:<span id="country-name"></span></h2>
+        <h2>Capital:<span id="capital-name"></span></h2>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    var inputButton = document.getElementById("country-input");
+    var imgTag = document.getElementById("img-tag");
+    var countryName = document.getElementById("country-name");
+    var capitalName = document.getElementById("capital-name");
+
+   
+
+    
+
+
+async function btnButton(){
+    const inpuTvalue = await inputButton.value;
+    const response = await fetch(`https://restcountries.com/v3.1/name/${inpuTvalue}?fullText=true`)
+    
+    const countries = await response.json();
+
+    
+
+    countries.forEach(data =>{
+        
+        imgTag.src= data.flags.png
+        countryName.innerHTML=data.name.common;
+        capitalName.innerHTML=data.capital[0];
+    })
+    
+
+} 
+
+
+
+
+
+
+
+
+
+
+</script>
+        
+</body>
+</head>
+</html>
